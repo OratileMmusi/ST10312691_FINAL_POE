@@ -1,13 +1,39 @@
 
 package part1;
 
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 /**
- *Student Number:
- * Full Name: 
- * Assignment: 
- * 
+  Student Name: Thandisiwe Mthokwa
+ *Student Number: ST10440247
+ * Description: Part_1
+ * @author Mthokwa Thandisiwe
  */
 public class Welcome extends javax.swing.JFrame {
+
+    public static String[] developers;
+    public static String[] taskIDs;
+    public static String[] taskNames;
+    public static int[] taskDurations;
+    public static String[] taskStatuses;
+    public static int taskCounter;
+
+    public static void deleteTaskByName(String task_to_Delete) {
+    }
+
+    public static void showLongestTask() {
+  
+    }
 
     /**
      * Creates new form Welcome
@@ -16,6 +42,10 @@ public class Welcome extends javax.swing.JFrame {
         initComponents();
     }
 
+    Welcome(boolean b) {
+    }
+
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,18 +56,50 @@ public class Welcome extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Welcome to EasyKanban");
+
+        jButton1.setText("1) Add tasks");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("2) Show report");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("3) Quit");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(119, 119, 119)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(119, 119, 119)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(132, 132, 132)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton2)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(120, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -45,12 +107,129 @@ public class Welcome extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1)
-                .addContainerGap(269, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3)
+                .addContainerGap(136, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        showAddTaskDialog();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void showAddTaskDialog() {
+    var input = JOptionPane.showInputDialog(null, "Enter the number of tasks:");
+    if (input != null) {
+        try {
+            var numTasks = Integer.parseInt(input);
+            if (numTasks > 0) {
+                // Initialize arrays to store data for the tasks
+                var developers = new String[numTasks];
+                var taskNames = new String[numTasks];
+                var taskIDs = new String[numTasks];
+                var taskDurations = new int[numTasks];
+                var taskStatuses = new String[numTasks];
+                final int[] taskCounter = {0}; // Use an array to hold the task counter
+
+                for (var i = 0; i < numTasks; i++) {
+                    var dialog = new JFrame("Add Task");
+                    dialog.setSize(400, 300);
+                    dialog.setLocationRelativeTo(null);
+                    dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+                    var panel = new JPanel(new GridLayout(7, 2, 5, 5));
+                    panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+                    var taskNameField = new JTextField();
+                    var taskDescriptionField = new JTextField();
+                    var developerDetailsField = new JTextField();
+                    var durationField = new JTextField();
+
+                    var taskStatusComboBox = new JComboBox<>(new String[]{"To Do", "Done", "Doing"});
+
+                    panel.add(new JLabel("Task Name:"));
+                    panel.add(taskNameField);
+                    panel.add(new JLabel("Task Description:"));
+                    panel.add(taskDescriptionField);
+                    panel.add(new JLabel("Developer Details:"));
+                    panel.add(developerDetailsField);
+                    panel.add(new JLabel("Task Duration (hours):"));
+                    panel.add(durationField);
+                    panel.add(new JLabel("Task Status:"));
+                    panel.add(taskStatusComboBox);
+
+                    var submitButton = new JButton("Submit");
+                    submitButton.addActionListener(e -> {
+                        var taskName = taskNameField.getText();
+                        var taskDescription = taskDescriptionField.getText();
+                        var developerDetails = developerDetailsField.getText();
+                        var durationInput = durationField.getText();
+                        var taskStatus = (String) taskStatusComboBox.getSelectedItem();
+
+                        if (taskName.isEmpty() || taskDescription.isEmpty() || developerDetails.isEmpty() || durationInput.isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "All fields are required.");
+                            return;
+                        }
+
+                        int taskDuration;
+                        try {
+                            taskDuration = Integer.parseInt(durationInput);
+                        } catch (NumberFormatException ex) {
+                            JOptionPane.showMessageDialog(null, "Please enter a valid number for task duration.");
+                            return;
+                        }
+
+                        var task = new Task(taskName, taskDescription, developerDetails, taskDuration, taskStatus);
+
+                        // Store task details in arrays
+                        developers[taskCounter[0]] = developerDetails;
+                        taskNames[taskCounter[0]] = taskName;
+                        taskIDs[taskCounter[0]] = task.createTaskID();
+                        taskDurations[taskCounter[0]] = taskDuration;
+                        taskStatuses[taskCounter[0]] = taskStatus;
+
+                        taskCounter[0]++; // Increment the task counter for the next task
+
+                        JOptionPane.showMessageDialog(null, task.printTaskDetails());
+                        JOptionPane.showMessageDialog(null, "Task successfully captured");
+
+                        dialog.dispose(); // Close the dialog
+                    });
+
+                    panel.add(submitButton);
+
+                    dialog.add(panel);
+                    dialog.setVisible(true);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Number of tasks must be greater than zero.");
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid number.");
+        }
+    }
+}
+    
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Coming soon");
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        //Quit application
+        System.exit(0);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+     
+    
     /**
      * @param args the command line arguments
      */
@@ -87,6 +266,9 @@ public class Welcome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

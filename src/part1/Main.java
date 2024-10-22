@@ -2,10 +2,10 @@
 package part1;
 
 /**
- *Student Number:
- * Full Name: 
- * Assignment: 
- * 
+  Student Name: Thandisiwe Mthokwa
+ *Student Number: ST10440247
+ * Description: Part_1
+ * @author Mthokwa Thandisiwe
  */
 public class Main {
 
