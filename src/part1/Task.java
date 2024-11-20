@@ -1,52 +1,64 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package part1;
-
-/**
- * Student Name: Thandisiwe Mthokwa
- *Student Number: ST10440247
- * Description: Part_1
- * @author Mthokwa Thandisiwe
- */
+/*
+*Student Number: ST10312691
+ * Full Name: Oratile Mmusi
+ * Description: POE PART 2 
+ * 
+*/
 public class Task {
-     private String taskName;
-    private String taskDescription;
-    private String developerDetails;
-    private int taskDuration;
-    private String taskStatus;
-    private static int taskCounter = 0; // Counter to track task numbers
-    private static int totalHours = 0; // Accumulator for total task hours
-    private String taskID;
 
-    public Task(String taskName, String taskDescription, String developerDetails, int taskDuration, String taskStatus) {
+    private String taskName;
+    private String developer;
+    private int duration;
+    private String status;
+    private String taskID; // Unique task ID
+
+    // Constructor
+    public Task(String taskName, String developer, int duration, String status) {
         this.taskName = taskName;
-        this.taskDescription = taskDescription;
-        this.developerDetails = developerDetails;
-        this.taskDuration = taskDuration;
-        this.taskStatus = taskStatus;
-        this.taskID = createTaskID();
-        totalHours += taskDuration;
+        this.developer = developer;
+        this.duration = duration;
+        this.status = status;
+        this.taskID = generateTaskID(); // Generate a unique task ID for each task
     }
 
+    // Getter for Developer
+    public String getDeveloper() {
+        return developer;
+    }
+
+    // Getter for Task Details
+    public String displayTaskDetails() {
+        return "Task ID: " + taskID + "\nTask Name: " + taskName + "\nDeveloper: " + developer + "\nDuration: " + duration + " hours\nStatus: " + status;
+    }
+
+    // Generate a unique Task ID
+    private String generateTaskID() {
+        return "TASK" + (int)(Math.random() * 10000);  // Simple random ID generation
+    }
+
+    // Getter for Duration
+    public int getDuration() {
+        return duration;
+    }
+
+    // Getter for Status
+    public String getStatus() {
+        return status;
+    }
+
+    // Getter for Task ID
+    public String getTaskID() {
+        return taskID;
+    }
+
+    // Implemented method to return the task's name
+    public String getTaskName() {
+        return taskName;
+    }
+
+    // Method to create Task ID - Simply returns the already generated task ID
     public String createTaskID() {
-        taskCounter++;
-        String taskNamePart = taskName.length() >= 2 ? taskName.substring(0, 2).toUpperCase() : taskName.toUpperCase();
-        String developerNamePart = developerDetails.length() >= 3 ? developerDetails.substring(developerDetails.length() - 3).toUpperCase() : developerDetails.toUpperCase();
-        return taskNamePart + ":" + taskCounter + ":" + developerNamePart;
+        return taskID;
     }
-
-    public String printTaskDetails() {
-        return String.format(
-                "Task Name: %s%nTask Description: %s%nDeveloper Details: %s%nTask Duration: %d hours%nTask Status: %s%nTask ID: %s",
-                taskName, taskDescription, developerDetails, taskDuration, taskStatus, taskID
-        );
-    }
-
-    public static int returnTotalHours() {
-        return totalHours;
-    }
-
-    // Getters and setters (omitted for brevity)
 }

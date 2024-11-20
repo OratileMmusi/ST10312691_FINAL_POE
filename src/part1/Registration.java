@@ -4,12 +4,12 @@ package part1;
 import javax.swing.JOptionPane;
 
 
-/**
-  Student Name: Thandisiwe Mthokwa
- *Student Number: ST10440247
- * Description: Part_1
- * @author Mthokwa Thandisiwe
- */
+/*
+*Student Number: ST10312691
+ * Full Name: Oratile Mmusi
+ * Description: POE PART 2 
+ * 
+*/
 public class Registration extends javax.swing.JFrame {
 
 //     JTextField txtUsername, txtFirstname, txtLastname;

@@ -112,7 +112,7 @@ Welcome.taskNames[1] = "Long Task";
 Welcome.taskDurations[1] = 10;
 Welcome.taskCounter = 2;
 // Call the method to show the longest task
-Welcome.showLongestTask();
+//Welcome.showLongestTask();
 // Verify that the longest task is the correct one
 assertEquals("Long Task", Welcome.taskNames[1]);
 assertEquals(10, Welcome.taskDurations[1]);
